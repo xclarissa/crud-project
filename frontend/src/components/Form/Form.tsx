@@ -12,6 +12,7 @@ export interface FormProps {
 }
 
 export default function Form({ form, setForm, getUsers }: FormProps) {
+ 
 
   function handleChange(key: number, ev: ChangeEvent<HTMLInputElement>) {
     const value = ev.target.value;
@@ -25,10 +26,9 @@ export default function Form({ form, setForm, getUsers }: FormProps) {
       }
       return prevState;
     });
-    console.log(form)
+    console.log(form);
 
     return form;
-  
   }
 
   const createUser = async () => {
@@ -60,7 +60,7 @@ export default function Form({ form, setForm, getUsers }: FormProps) {
 
   useEffect(() => {
     getUsers();
-  }, [ ]);
+  }, []);
 
   return (
     <F.FormContainer onSubmit={handleSubmit}>
@@ -98,7 +98,7 @@ export default function Form({ form, setForm, getUsers }: FormProps) {
           name="data_nascimento"
           type="date"
           lang="pt-BR"
-          value={String(form.data_nascimento)}
+          value={moment(form.data_nascimento).format(`YYYY-MM-DD`)} 
           onChange={(event) => handleChange(form.id, event)}
         />
       </F.InputArea>

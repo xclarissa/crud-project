@@ -3,6 +3,7 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { Users } from "../../types/users.type";
 import { Http } from "../../api/api"; 
+import moment from "moment";
 
 interface UserProps {
   users: Users[];
@@ -12,6 +13,7 @@ interface UserProps {
 }
 
 export default function Grid({ users, setUsers, setForm, getUsers }: UserProps) {
+  
   const handleEdit = (item: Users) => {
     setForm(item)
   }
@@ -46,7 +48,7 @@ export default function Grid({ users, setUsers, setForm, getUsers }: UserProps) 
             <G.Td width="30%">{user.nome}</G.Td>
             <G.Td width="30%">{user.email}</G.Td>
             <G.Td width="20%">{user.fone}</G.Td>
-            <G.Td width="20%">{String(user.data_nascimento)}</G.Td>
+            <G.Td width="20%">{moment(user.data_nascimento).format('DD-MM-YYYY')}</G.Td>
             <G.Td alignCenter width="5%">
               <FaEdit onClick={() => handleEdit(user)} />
             </G.Td>
